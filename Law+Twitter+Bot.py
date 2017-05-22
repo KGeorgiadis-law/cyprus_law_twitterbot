@@ -4,7 +4,7 @@
 
 # In[18]:
 
-#  Py3.5.2
+#!Py3.5.2
 #  CyprusLawTwitterBot_ver2.py
 #  Mostly a learning exercise.
 #  A bot to:
@@ -36,7 +36,7 @@ from credentials import *
 
 from urllib.request import urlopen
 
-from time import sleep
+from time import sleep, gmtime, strftime
 
 
 
@@ -60,6 +60,11 @@ while True:
     # for more info on ETags and why they're used here, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
 
     # In[71]:
+    # log the time of check
+    log_file = open("log.txt", "a")
+    log = strftime("%Y-%m-%d %H:%M:%S", gmtime())+" : "+current_ETag
+    log_file.write(log)
+    log_file.close()
 
     #next step: try to read last saved ETag - if file does not exist, create it
     try:
