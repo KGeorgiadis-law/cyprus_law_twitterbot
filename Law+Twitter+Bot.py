@@ -54,24 +54,9 @@ while True:
     response = requests.head(url)
     headers = response.headers
 
-
-    # In[67]:
-
-    conn = requests.get(url)
-
-
-    # In[57]:
-
-    # commented out to get this script to work wihtout using urlopen - to avoid importing two libraries
-
-    '''
-    conn = urlopen(url, timeout=30)
-    headers = conn.headers
-    '''
     print(headers['ETag'])
     current_ETag = headers['ETag'] 
     # for more info on ETags and why they're used here, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
-
 
     # In[71]:
 
