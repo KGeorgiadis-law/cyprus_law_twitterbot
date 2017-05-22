@@ -1,9 +1,10 @@
+#!/usr/bin/python3
 
 # coding: utf-8
 
 # In[18]:
 
-#!Py3.5.2
+#  Py3.5.2
 #  CyprusLawTwitterBot_ver2.py
 #  Mostly a learning exercise.
 #  A bot to:
