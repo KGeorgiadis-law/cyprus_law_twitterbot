@@ -62,7 +62,7 @@ while True:
     # In[71]:
     # log the time of check
     log_file = open("log.txt", "a")
-    log = strftime("%Y-%m-%d %H:%M:%S", gmtime())+" : "+current_ETag
+    log = strftime("%Y-%m-%d %H:%M:%S", gmtime())+" : "+current_ETag+"\n"
     log_file.write(log)
     log_file.close()
 
