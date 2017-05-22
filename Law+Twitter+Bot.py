@@ -153,9 +153,9 @@ while True:
                 counter += 1
             previous_tweets_file.close()
         
-        print("Finished! Sleeping now...")
+        print("Finished! Sleeping now... \n\n")
     else:
-        print("No changes since last time!")
+        print("No changes since last time! Sleeping now...\n\n")
 
     sleep(300) #do this every 300 seconds
 
