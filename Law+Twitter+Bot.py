@@ -46,6 +46,7 @@ while True:
 
     url = "http://www.cylaw.org/updates.html"
 
+    print("Starting...")
 
     # In[56]:
 
@@ -67,7 +68,7 @@ while True:
     conn = urlopen(url, timeout=30)
     headers = conn.headers
     '''
-    #print(headers['ETag'])
+    print(headers['ETag'])
     current_ETag = headers['ETag'] 
     # for more info on ETags and why they're used here, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
 
@@ -132,13 +133,6 @@ while True:
         api = tweepy.API(auth)
 
         if len(announcements) > 0:
-            #load a list of previous tweets to ensure no duplicates
-            try:
-                previous_tweets_file = open("previous_tweets.txt", "r")
-                previous_tweets = previous_tweets_file.read().split("\n")
-                previous_tweets_file.close()
-            except FileNotFoundError:
-                previous_tweets = None
 
             previous_tweets_file = open("previous_tweets.txt", "a")
             
@@ -146,31 +140,30 @@ while True:
             tweet_list = []
             no_announcements = str(len(announcements))
             starting_tweet = (date+": Δημοσίευση "+no_announcements+" Νέων αποφάσεων στο http://www.cylaw.org/updates.html : ...")
-            api.update_status(starting_tweet)
-            print(starting_tweet)
-
+            try:
+                api.update_status(starting_tweet)
+                print(starting_tweet)
+            except: #only post the first 75 characters of the case if the script gets a twitter error
+                    #tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link 
+                    #api.update_status(tweet_text)
+                    print("Error encountered! Skipping posting of this tweet...")
+                    print("For reference, tweet length was {} and its text was {}".format(len(starting_tweet), starting_tweet))
+            
             counter = 1
 
             for ann in announcements: #compile and send tweets
                 text = ann.text
                 link = link_prefix + ann.get('href')
-                #tweet_end is to show there are other messages following as well 
                 try:
                     tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text+" "+link
-                    if tweet_text not in previous_tweets:
-                        api.update_status(tweet_text)
-                        previous_tweets_file.write(tweet_text+"\n")
-                    else:
-                        print("tweet already posted!")
-                except TweepError: #only post the first 75 characters of the case if the script gets a twitter error
-                    tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link 
                     api.update_status(tweet_text)
-                    if tweet_text not in previous_tweets:
-                        api.update_status(tweet_text)
-                        previous_tweets_file.write(tweet_text+"\n")
-                    else:
-                        print("tweet already posted!")
-                print(tweet_text)
+                    print("Posting...")
+                    print(tweet_text)
+                except: #only post the first 75 characters of the case if the script gets a twitter error
+                    #tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link 
+                    #api.update_status(tweet_text)
+                    print("Error encountered! Skipping posting of this tweet...")
+                    print("For reference, tweet length was {} and its text was {}".format(len(tweet_text), tweet_text))
                 sleep(5)
                 counter += 1
             previous_tweets_file.close()
