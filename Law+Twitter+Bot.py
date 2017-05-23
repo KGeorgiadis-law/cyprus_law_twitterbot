@@ -163,5 +163,5 @@ while True:
     else:
         print("No changes since last time! Sleeping now...\n\n")
 
-    sleep(300) #do this every 300 seconds
+    sleep(600) #do this every 600 seconds (5 mins)
 
