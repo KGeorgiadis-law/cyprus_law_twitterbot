@@ -1,3 +1,4 @@
 credentials.py
 *.txt
 __pycache__/credentials.cpython-35.pyc
+*.xml
