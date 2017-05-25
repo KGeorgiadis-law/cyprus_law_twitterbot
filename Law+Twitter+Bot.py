@@ -109,7 +109,6 @@ while True:
 
             with open("previous_tweets.txt", "r", encoding='utf-8') as previous_tweets_file:
                 previous_tweets_list = previous_tweets_file.readlines()
-                print(previous_tweets_list)
 
             previous_tweets_file = open("previous_tweets.txt", "a", encoding='utf-8')
 
