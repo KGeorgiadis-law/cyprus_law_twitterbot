@@ -135,10 +135,10 @@ while True:
                 api.update_status(starting_tweet)
                 print(starting_tweet)
             except: #only post the first 75 characters of the case if the script gets a twitter error
-                    #tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link 
-                    #api.update_status(tweet_text)
-                    print("Error encountered! Skipping posting of this tweet...")
-                    print("For reference, tweet length was {} and its text was {}".format(len(starting_tweet), starting_tweet))
+                #tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link 
+                #api.update_status(tweet_text)
+                print("Error encountered! Skipping posting of this tweet...")
+                print("For reference, tweet length was {} and its text was {}".format(len(starting_tweet), starting_tweet))
             
             counter = 1
 
