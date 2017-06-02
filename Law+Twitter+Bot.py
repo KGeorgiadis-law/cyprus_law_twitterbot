@@ -157,8 +157,9 @@ while True:
                         print(tweet_text)
                         # previous_tweets_file.write()
                     except:
-                        print("Error encountered! Skipping posting of this tweet...")
-                        print("For reference, tweet length was {} and its text was {}".format(len(tweet_text), tweet_text))
+                        print("""Error encountered! Skipping posting of this tweet...\n
+                        For reference, tweet length was {} and its text was {}"""
+                              .format(len(tweet_text), tweet_text))
                 else:
                     print("Duplicate tweet!")
                 sleep(5)
