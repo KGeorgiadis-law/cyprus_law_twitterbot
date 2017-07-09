@@ -39,9 +39,7 @@ while True:
 
     print("Starting... ", strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
-    
-
-    # method 1: only request the headers to avoid making a whole GET request every time 
+    # method 1: only request the headers to avoid making a whole GET request every time
     response = requests.head(url)
     headers = response.headers
 
