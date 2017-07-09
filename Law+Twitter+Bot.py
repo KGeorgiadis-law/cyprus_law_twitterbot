@@ -121,7 +121,7 @@ while True:
             if starting_tweet + "\n" not in previous_tweets_list:
                 previous_tweets_file.write(starting_tweet+"\n")
                 try:
-                    api.update_status(starting_tweet)
+                    starting_status = api.update_status(starting_tweet)
                     print(starting_tweet)
                 except:  # only post the first 75 characters of the case if the script gets a twitter error
                     # tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link
@@ -131,7 +131,6 @@ while True:
                                                                                           starting_tweet))
             else:
                 print("Duplicate tweet!\n{}".format(starting_tweet))
-
 
             counter = 1
 
@@ -152,7 +151,7 @@ while True:
                         if len(tweet_text) - len(link) + 23 > 140:
                             print("Length larger than 140 characters so shortening length to first 105 chars")
                             tweet_text = "[" + str(counter) + "/" + no_announcements + "]: " + text[0:105] + "... " + link
-                        api.update_status(tweet_text)
+                        api.update_status(tweet_text, starting_status.id_str)
                         print("Posting...")
                         print(tweet_text)
                         # previous_tweets_file.write()
