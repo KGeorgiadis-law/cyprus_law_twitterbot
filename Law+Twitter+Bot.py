@@ -115,7 +115,7 @@ while True:
             no_announcements = str(len(announcements))
             starting_tweet = (
                 date + ": Δημοσίευση " + no_announcements +
-                " Νέων αποφάσεων στο http://www.cylaw.org/updates.html : ...")
+                " Νέων αποφάσεων Ανωτάτου Κύπρου http://www.cylaw.org/updates.html : ...")
             if starting_tweet + "\n" not in previous_tweets_list:
                 previous_tweets_file.write(starting_tweet+"\n")
                 try:
