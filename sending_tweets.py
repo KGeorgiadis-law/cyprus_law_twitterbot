@@ -1,6 +1,7 @@
 # Functions for sending tweets, surprisingly enough.
 
 
+def send_tweet(counter, tweet_text, starting_tweet=False):
 
     with open("previous_tweets.txt", "r", encoding='utf-8') as previous_tweets_file:
         previous_tweets_list = previous_tweets_file.readlines()
