@@ -2,3 +2,5 @@ credentials.py
 *.txt
 __pycache__/credentials.cpython-35.pyc
 *.xml
+testing.ipynb
+.ipynb_checkpoints/*

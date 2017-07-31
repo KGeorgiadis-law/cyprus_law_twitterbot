@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
 # coding: utf-8
-
 # !Py3.5.2
 #  CyprusLawTwitterBot_ver2.py
 #  Mostly a learning exercise.
@@ -115,7 +113,7 @@ while True:
             no_announcements = str(len(announcements))
             starting_tweet = (
                 date + ": Δημοσίευση " + no_announcements +
-                " Νέων αποφάσεων στο http://www.cylaw.org/updates.html : ...")
+                " Νέων αποφάσεων Ανωτάτου Κύπρου http://www.cylaw.org/updates.html")
             if starting_tweet + "\n" not in previous_tweets_list:
                 previous_tweets_file.write(starting_tweet+"\n")
                 try:
@@ -124,6 +122,7 @@ while True:
                 except:  # only post the first 75 characters of the case if the script gets a twitter error
                     # tweet_text = "["+str(counter)+"/"+no_announcements+"]: "+text[0:75]+" "+link
                     # api.update_status(tweet_text)
+                    starting_status = starting_tweet = ""
                     print("Error encountered! Skipping posting of this tweet...")
                     print("For reference, tweet length was {} and its text was {}".format(len(starting_tweet),
                                                                                           starting_tweet))
@@ -135,7 +134,7 @@ while True:
             for ann in announcements:  # compile and send tweets
                 text = ann.text
                 link = link_prefix + ann.get('href')
-                tweet_text = "[" + str(counter) + "/" + no_announcements + "]: " + text + " " + link
+                tweet_text = "[" + str(counter) + "/" + no_announcements + "] " + text + " " + link
                 if tweet_text + "\n" not in previous_tweets_list:
                     previous_tweets_file.write(tweet_text+"\n")
                     try:
