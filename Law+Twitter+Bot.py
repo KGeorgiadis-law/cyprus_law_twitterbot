@@ -96,9 +96,15 @@ while True: # repeat endlessly
         else:
             print("change detected!")
 
+<<<<<<< HEAD
             # update the ETag file with the new ETag
             with open("last_ETag.txt", "w") as ETag_file:
                 ETag_file.write(current_ETag)
+=======
+	    # update the ETag file with the new ETag
+##	    with open("last_ETag.txt", "w") as ETag_file:
+##                ETag_file.write(current_ETag)                
+>>>>>>> origin/master
 
             # change of ETag means that the page has been updated
 	    # Open the site properly (with a GET request) using URLopen
@@ -153,7 +159,11 @@ while True: # repeat endlessly
 		# post starter tweet
                 print("Posting Starter tweet...")
                 first_tweet = post_tweet(tweet_counter, starting_tweet, api, tweet_counter)
+<<<<<<< HEAD
                 if first_tweet != False or first_tweet == None:
+=======
+                if first_tweet != False or None:
+>>>>>>> origin/master
                     print("Success: tweet id: {}".format(first_tweet.id_str))
 		# draft and send tweets
                 for judgement in judgements_links:
@@ -181,7 +191,11 @@ while True: # repeat endlessly
                     judgement_url = link_prefix + judgement.get('href')
                     tweet_text = "[{}/{}] {} {}".format(str(tweet_counter), len(judgements_links), judgement_title, judgement_url)
                     tweet = post_tweet(tweet_counter, tweet_text, api, first_tweet)
+<<<<<<< HEAD
                     if tweet != False or tweet == None:
+=======
+                    if tweet != False or None:
+>>>>>>> origin/master
                         print("Success: tweet id: {}".format(tweet.id_str))
                     sleep(5) # wait five seconds before posting a new tweet
 
