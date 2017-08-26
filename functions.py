@@ -12,6 +12,7 @@ def post_tweet(counter, tweet_text, api, reply_to):
     if tweet_text_log in previous_tweets_list:
 
         print("Duplicate tweet!\n{}".format(tweet_text))
+        return False
 
     else:
         

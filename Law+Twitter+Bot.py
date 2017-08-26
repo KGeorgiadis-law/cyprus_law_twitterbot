@@ -2,17 +2,15 @@
 # coding: utf-8
 # !Py3.5.2
 #  CyprusLawTwitterBot_ver2.py
-
 #  Mostly a learning exercise.
-
 #  A bot to:
-#  (a) check CyLaw every five days for an update
-#  (b) when finding an update, take the title and a link to the judgements posted
-#  (c) post these on twitter as tweets.
+#  (a) check CyLaw once an hour on weekdays for an update
+#  (b) if it finds an update, take the title and a link to the document
+#  (c) post these on twitter as an announcement.
 
 # How does it do these things?
-# (a) is done using an HTTP request to see whether website has changed
-# (b) is done using BeautifulSoup4 to find the latest announcement to the page
+# (a) is done using an HTTP request to see whether something has changed
+# (b) is done using BeautifulSoup4 to find the latest link added to the page
 # (c) is done using the twitter API
 
 # Where does the bot run?
@@ -157,37 +155,37 @@ while True: # repeat endlessly
                 if first_tweet != False or first_tweet == None:
                     print("Success: tweet id: {}".format(first_tweet.id_str))
 
-		# draft and send tweets
-                for judgement in judgements_links:
+                    # draft and send tweets
+                    for judgement in judgements_links:
 
-                    tweet_counter += 1
+                        tweet_counter += 1
 
-                    judgement_title = judgement.text
-                    print(judgement_title)
-                    
-                    # check if the length exceeds standard tweet length
-                    # explanation of 108/105 char limit:
-		    # links (urls) are automatically shortened by twitter to 23 characters;
-                    # therefore, we can substract the length fo the link and add 23 to find the real
-                    # length of the tweet.
-                    # If it is more than 140 characters, the text is shortened to its first 105 characters
-                    #  (this is considering that link = 23 chars and counter/no announcements = up to 9 chars, since judgement number may be a 2-digit number)
-                    #  (140 - (23 + 7) = 108)
-		    # Finally, if a title is over 108 characters, we reduce it to 105 and add 3 fullstops
+                        judgement_title = judgement.text
+                        print(judgement_title)
 
-                    if len(judgement_title) > 105:
-                        
-                        print("Length larger than 140 characters so shortening length to first 105 chars")
-                        judgement_title = judgement.text[:105]+"..."
+                        # check if the length exceeds standard tweet length
+                        # explanation of 108/105 char limit:
+                        # links (urls) are automatically shortened by twitter to 23 characters;
+                        # therefore, we can substract the length fo the link and add 23 to find the real
+                        # length of the tweet.
+                        # If it is more than 140 characters, the text is shortened to its first 105 characters
+                        #  (this is considering that link = 23 chars and counter/no announcements = up to 9 chars, since judgement number may be a 2-digit number)
+                        #  (140 - (23 + 7) = 108)
+                        # Finally, if a title is over 108 characters, we reduce it to 105 and add 3 fullstops
 
-                    judgement_url = link_prefix + judgement.get('href')
-                    tweet_text = "[{}/{}] {} {}".format(str(tweet_counter), len(judgements_links), judgement_title, judgement_url)
-                    tweet = post_tweet(tweet_counter, tweet_text, api, first_tweet)
+                        if len(judgement_title) > 105:
 
-                    if tweet != False or tweet == None:
-                        print("Success: tweet id: {}".format(tweet.id_str))
+                            print("Length larger than 140 characters so shortening length to first 105 chars")
+                            judgement_title = judgement.text[:105]+"..."
 
-                    sleep(5) # wait five seconds before posting a new tweet
+                        judgement_url = link_prefix + judgement.get('href')
+                        tweet_text = "[{}/{}] {} {}".format(str(tweet_counter), len(judgements_links), judgement_title, judgement_url)
+                        tweet = post_tweet(tweet_counter, tweet_text, api, first_tweet)
+
+                        if tweet != False or tweet == None:
+                            print("Success: tweet id: {}".format(tweet.id_str))
+
+                        sleep(5) # wait five seconds before posting a new tweet
 
             print("Finished! Sleeping now... \n\n")
 
