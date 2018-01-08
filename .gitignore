@@ -4,3 +4,5 @@ __pycache__/credentials.cpython-35.pyc
 *.xml
 testing.ipynb
 .ipynb_checkpoints/*
+legacy/*
+legacy/.ipynb_checkpoints/Law Twitter Bot-checkpoint.ipynb

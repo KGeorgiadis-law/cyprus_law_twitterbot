@@ -48,18 +48,20 @@ def analyse_judgement(url):
 
     judgement_full_text = soup.get_text()
 
-    judgement_paragraphs = judgement_full_text.split("\n")
-    potential_paragraphs = list()
-    for i in range(len(judgement_paragraphs) -1):
-        # important paragraphs are usually followed by two empty lines. We can use that here
-        potential_paragraph = judgement_paragraphs[i - 2]
-        previous_line = judgement_paragraphs[i-1]
-        current_line = judgement_paragraphs[i]
-        # print("{}: Length: {}; Text :'{}'".format(i, len(judgement_paragraphs[i]), judgement_paragraphs[i]))
-        if len(previous_line) == 1 and len(current_line) == 1 and len(potential_paragraph) != 1:
-            #print("{}: '{}'".format(i, potential_paragraph))
-            potential_paragraphs.append(potential_paragraph)
-    print("'{}'".format(potential_paragraphs[1][:140]))
+    print(judgement_full_text)
+
+##    judgement_paragraphs = judgement_full_text.split("\n")
+##    potential_paragraphs = list()
+##    for i in range(len(judgement_paragraphs) -1):
+##        # important paragraphs are usually followed by two empty lines. We can use that here
+##        potential_paragraph = judgement_paragraphs[i - 2]
+##        previous_line = judgement_paragraphs[i-1]
+##        current_line = judgement_paragraphs[i]
+##        # print("{}: Length: {}; Text :'{}'".format(i, len(judgement_paragraphs[i]), judgement_paragraphs[i]))
+##        if len(previous_line) == 1 and len(current_line) == 1 and len(potential_paragraph) != 1:
+##            #print("{}: '{}'".format(i, potential_paragraph))
+##            potential_paragraphs.append(potential_paragraph)
+##    print("'{}'".format(potential_paragraphs[1][:140]))
 
 
     # twitter portion: reply to the status posted with a tidbit from the judgement
