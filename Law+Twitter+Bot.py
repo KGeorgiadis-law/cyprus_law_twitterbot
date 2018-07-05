@@ -32,14 +32,12 @@ from functions import *
 
 from credentials import * # log in information
 
-
 # initialise twitter API
 
 #try:
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
-
 
 # message creator that the bot is starting
 print("Messaging creator...")
@@ -192,7 +190,10 @@ while True: # repeat endlessly
     except Exception as ex:
         print(ex)
 	# message creator that an error has appeared
-        api.send_direct_message(USERNAME, USERNAME, USERNAME, "Error: {}".format(ex))
+        try:
+            api.send_direct_message(USERNAME, USERNAME, USERNAME, "Error: {}".format(ex))
+        except Exception as ex2:
+            print(ex2)
         print("Error handled, sleeping again...")
 
     sleep(600)  # do this every 600 seconds (i.e. 5 mins)
