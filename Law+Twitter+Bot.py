@@ -4,7 +4,7 @@
 #  CyprusLawTwitterBot_ver2.py
 #  Mostly a learning exercise.
 #  A bot to:
-#  (a) check CyLaw once an hour on weekdays for an update
+#  (a) check CyLaw once every five minutes for an update
 #  (b) if it finds an update, take the title and a link to the document
 #  (c) post these on twitter as an announcement.
 
@@ -14,7 +14,7 @@
 # (c) is done using the twitter API
 
 # Where does the bot run?
-# The bot runs on an Amazon EC2 instance (Linux).
+# The bot runs on a Raspberry pi (Linux).
 
 # dependencies
 
