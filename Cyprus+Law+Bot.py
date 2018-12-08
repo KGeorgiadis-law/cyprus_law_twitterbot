@@ -17,7 +17,6 @@
 # The bot runs on a Raspberry pi (Linux).
 
 # dependencies
-
 import tweepy # twitter API
 
 from bs4 import BeautifulSoup # package for HTML Parsing
