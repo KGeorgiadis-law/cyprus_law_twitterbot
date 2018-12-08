@@ -33,7 +33,7 @@ from credentials import * # log in information
 
 # initialise twitter API
 
-def CyprusLawBot():
+def cyprusLawBot():
 
     # log in
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)

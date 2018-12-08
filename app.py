@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from Cyprus+Law+Bot import *
+from CyprusLawBot import CyprusLawBot
 
 app = Flask(__name__)
 
