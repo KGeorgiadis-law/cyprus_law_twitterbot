@@ -9,5 +9,5 @@ def index():
   if request.method == 'GET':
     return "hello there!"
   else:
-    CyprusLawBot()
+    cyprusLawBot()
     return ""
