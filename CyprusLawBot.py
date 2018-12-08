@@ -29,7 +29,9 @@ from time import sleep, gmtime, strftime
 
 from functions.functions import *
 
-from credentials import * # log in information
+# from credentials import * # log in information
+
+from os import getenv
 
 # initialise twitter API
 
