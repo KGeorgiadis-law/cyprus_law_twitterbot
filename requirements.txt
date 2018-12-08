@@ -2,3 +2,5 @@ bs4
 tweepy
 requests
 flask
+flask-sqlalchemy 
+psycopg2
