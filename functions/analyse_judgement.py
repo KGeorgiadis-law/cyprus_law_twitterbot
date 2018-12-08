@@ -10,9 +10,6 @@
 # a function to extract the text of the judgement from the script, and generate a short tidbit to tweet as a reply
 # to the original tweet announcing the judgement
 
-
-
-
 # dependencies
 
 import tweepy

@@ -28,9 +28,12 @@ from urllib.request import urlopen # used for GET HTTP requests
 
 from time import sleep, gmtime, strftime
 
-from functions import *
+from functions.functions import *
 
 from credentials import * # log in information
+
+# from flask import Flask
+
 
 # initialise twitter API
 
@@ -40,7 +43,7 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 # message creator that the bot is starting
-print("Messaging creator...")
+# print("Messaging creator...")
 # api.send_direct_message(USERNAME, USERNAME, USERNAME, "Bot Initialising...")
 
 # start main function
@@ -69,7 +72,7 @@ while True: # repeat endlessly
 	# this log can be used down the line to check how much ETag changes and
 	## if it is a good method.
 
-        with open("log.txt", "a") as log_file:
+        with open("text files/log.txt", "a") as log_file:
             log = strftime(time_format, gmtime()) + " : " + current_ETag + "\n"
             log_file.write(log)
 
