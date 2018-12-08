@@ -6,3 +6,4 @@ testing.ipynb
 .ipynb_checkpoints/*
 legacy/*
 legacy/.ipynb_checkpoints/Law Twitter Bot-checkpoint.ipynb
+.env
