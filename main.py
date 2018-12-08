@@ -41,7 +41,7 @@ api = tweepy.API(auth)
 
 # message creator that the bot is starting
 print("Messaging creator...")
-api.send_direct_message(USERNAME, USERNAME, USERNAME, "Bot Initialising...")
+# api.send_direct_message(USERNAME, USERNAME, USERNAME, "Bot Initialising...")
 
 # start main function
 
