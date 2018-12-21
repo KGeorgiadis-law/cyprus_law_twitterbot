@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
   if request.method == 'GET':
-    return "hello there!"
+    return "you should not be here..."
   else:
     cyprusLawBot()
     return ""
