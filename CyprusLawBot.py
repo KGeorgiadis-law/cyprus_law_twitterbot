@@ -38,16 +38,21 @@ from os import getenv
 def cyprusLawBot():
 
     # log in
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+
+    auth = tweepy.OAuthHandler(getenv('CONSUMER_KEY'), getenv('CONSUMER_SECRET'))
+    auth.set_access_token(getenv('ACCESS_TOKEN'), getenv('ACCESS_SECRET'))
     api = tweepy.API(auth)
 
     # helper variables
     time_format = "%Y-%m-%d %H:%M:%S"
 
     # message creator that the bot is starting
-    print("Messaging creator...")
-    api.send_direct_message(USERNAME, USERNAME, USERNAME, "Bot Initialising at %s" % strftime(time_format, gmtime()))
+    try:
+        print("Messaging creator...")
+        USERNAME = getenv('USERNAME')
+        api.send_direct_message(USERNAME, USERNAME, USERNAME, "Bot Initialising at %s" % strftime(time_format, gmtime()))
+    except tweepy.TweepError:
+        print("Error messaging creator!")
 
     # start main function
     try:
@@ -200,3 +205,6 @@ def cyprusLawBot():
         print("Error handled, sleeping again...")
 
     sleep(600)  # do this every 600 seconds (i.e. 5 mins)
+
+if __name__ is '__main__':
+    cyprusLawBot()
