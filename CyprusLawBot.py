@@ -197,4 +197,4 @@ def cyprusLawBot(db):
     sleep(600)  # do this every 600 seconds (i.e. 5 mins)
 
 if __name__ is '__main__':
-    cyprusLawBot()
+    cyprusLawBot(db=None)
