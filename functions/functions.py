@@ -1,6 +1,12 @@
 # function to check tweets
 
-def post_tweet(counter, tweet_text, api, reply_to):
+def post_tweet(counter, tweet_text, api, reply_to, Tweet_database, db):
+
+
+    ##TODO: change this to work with databases. 
+    ##See: 
+    # http://flask-sqlalchemy.pocoo.org/2.3/quickstart/
+    # https://stackoverflow.com/questions/6587879/how-to-elegantly-check-the-existence-of-an-object-instance-variable-and-simultan    
 
     with open("previous_tweets.txt", "r", encoding='utf-8') as previous_tweets_file:
         previous_tweets_list = previous_tweets_file.readlines()

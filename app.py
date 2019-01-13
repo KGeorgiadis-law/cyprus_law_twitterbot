@@ -28,5 +28,6 @@ def index():
   if request.method == 'GET':
     return "you should not be here..."
   else:
-    # cyprusLawBot()
+    # cyprusLawBot(db)
+
     return "running..."

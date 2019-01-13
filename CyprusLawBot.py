@@ -29,13 +29,15 @@ from time import sleep, gmtime, strftime
 
 from functions.functions import *
 
+from app import Etag, Tweet # import tables
+
 # from credentials import * # log in information
 
 from os import getenv
 
 # initialise twitter API
 
-def cyprusLawBot():
+def cyprusLawBot(db):
 
     # log in
 
@@ -74,19 +76,8 @@ def cyprusLawBot():
     	# this log can be used down the line to check how much ETag changes and
 	    ## if it is a good method.
 
-        with open("text files/log.txt", "a") as log_file:
-            log = strftime(time_format, gmtime()) + " : " + current_ETag + "\n"
-            log_file.write(log)
-        
-        # next step: try to read last saved ETag - if file does not exist, create it
-
-        try:
-            ETag_file = open("last_ETag.txt", "r")
-            last_ETag = ETag_file.read()
-        except FileNotFoundError:
-            ETag_file = open("last_ETag.txt", "w")
-            last_ETag = ''
-        ETag_file.close()
+        # get most recent Etag from the Etag database
+        last_ETag = db.session.query(Etag).order_by(Etag.id.desc()).first()
 
         print("Comparing ETags...")
         print(current_ETag + " " + last_ETag)
@@ -98,9 +89,8 @@ def cyprusLawBot():
         
         print("change detected!")
 
-        # update the ETag file with the new ETag
-        with open("last_ETag.txt", "w") as ETag_file:
-            ETag_file.write(current_ETag)
+        # update the ETag database with the new ETag
+        db.session.add(Etag(etag=current_ETag))
 
         # change of ETag means that the page has been updated
 	    # Open the site properly (with a GET request) using URLopen
@@ -155,7 +145,7 @@ def cyprusLawBot():
 
 		# post starter tweet
         print("Posting Starter tweet...")
-        first_tweet = post_tweet(tweet_counter, starting_tweet, api, tweet_counter)
+        first_tweet = post_tweet(tweet_counter, starting_tweet, api, tweet_counter, Tweet, db)
 
         if first_tweet != False or first_tweet == None:
 
@@ -186,7 +176,7 @@ def cyprusLawBot():
 
                 judgement_url = link_prefix + judgement.get('href')
                 tweet_text = "[{}/{}] {} {}".format(str(tweet_counter), len(judgements_links), judgement_title, judgement_url)
-                tweet = post_tweet(tweet_counter, tweet_text, api, first_tweet)
+                tweet = post_tweet(tweet_counter, tweet_text, api, first_tweet, Tweet, db)
 
                 if tweet != False or tweet == None:
                     print("Success: tweet id: {}".format(tweet.id_str))
