@@ -20,10 +20,13 @@ class Etags(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   etag = db.Column(db.String(80))
 
+  def __repr__(self):
+    return self.etag
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
   if request.method == 'GET':
     return "you should not be here..."
   else:
-    cyprusLawBot()
+    # cyprusLawBot()
     return "running..."
