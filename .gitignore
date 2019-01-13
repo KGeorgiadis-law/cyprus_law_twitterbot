@@ -1,8 +1,9 @@
 credentials.py
-*.txt
-__pycache__/credentials.cpython-35.pyc
+text_files/*
+__pycache__/
 *.xml
 testing.ipynb
 .ipynb_checkpoints/*
 legacy/*
 legacy/.ipynb_checkpoints/Law Twitter Bot-checkpoint.ipynb
+.env

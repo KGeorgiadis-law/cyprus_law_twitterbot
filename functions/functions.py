@@ -5,7 +5,7 @@ def post_tweet(counter, tweet_text, api, reply_to):
     with open("previous_tweets.txt", "r", encoding='utf-8') as previous_tweets_file:
         previous_tweets_list = previous_tweets_file.readlines()
 
-    previous_tweets_file = open("previous_tweets.txt", "a", encoding='utf-8')
+    previous_tweets_file = open("../text files/previous_tweets.txt", "a", encoding='utf-8')
 
     tweet_text_log = tweet_text + "\n"
 
