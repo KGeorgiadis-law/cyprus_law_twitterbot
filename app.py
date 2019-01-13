@@ -9,20 +9,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-class User(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(80), unique=True, nullable=False)
-  email = db.Column(db.String(120), unique=True, nullable=False)
-
-  def __repr__(self):
-      return '<User %r>' % self.username
-
-class Etags(db.Model):
+class Etag(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   etag = db.Column(db.String(80))
 
   def __repr__(self):
     return self.etag
+
+class Tweet(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  tweet_text = db.Column(db.String(200))
+
+  def __repr__(self):
+    return self.tweet_text
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
